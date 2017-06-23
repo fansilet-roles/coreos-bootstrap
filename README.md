@@ -26,7 +26,7 @@ _It dosen't necessery set global $PATH for pyhton, this role whill be place a ni
 
 You must set your inventory vars with this python path:
 
-[coreos:vars]
+[coreos:vars]<br>
 ansible_python_interpreter="/opt/python/bin/python"
 
 
