@@ -1,0 +1,9 @@
+---
+# vars file for coreos-bootstrap
+profiled: "/etc/profile.d/"
+
+dkcompose: "/opt/python/bin/docker-compose"
+pwdpypi: "/opt/bin/"
+
+
+timesetpwd: "/tmp/timeset.yml"

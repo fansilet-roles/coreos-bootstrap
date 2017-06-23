@@ -1,0 +1,16 @@
+---
+# defaults file for coreos-bootstrap
+
+targets: all
+user: core
+
+#--- Template Options
+universaltime: America/Sao_Paulo
+
+# --- Optional Select Settings ---
+# Turn this true or false as you need the settings
+
+pythonize: true
+timeset: true
+componize: true
+

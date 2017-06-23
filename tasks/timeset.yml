@@ -1,0 +1,12 @@
+---
+#Setting ntp
+  - name: "Setup | Adjusting universal time clock"
+    template: src="timeset.yml" dest="{{ timesetpwd }}" mode=0644
+    with_items: "{{ universaltime }}"
+    when: timeset
+
+  - name: "Setup | Setting up ntp "
+    command: coreos-cloudinit --from-file "{{ timesetpwd }}" 
+    become: true
+    when: timeset
+    

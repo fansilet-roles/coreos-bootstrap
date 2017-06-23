@@ -1,0 +1,18 @@
+---
+#This play create a partition on coreos to place /var/lib/docker
+
+  - name: "Setup | Creating disk for docker"
+    parted:
+      device: "{{ disk }}"
+      number: 1
+      state: present
+#      flags: [ lvm ]
+    become: true
+
+  - name: "Setup | Building a filesytem on target if not exist"
+    filesystem:
+      fstype: "{{ filesystem }}"
+      dev: "{{ disk }}1"
+      force: yes
+    become: true
+    when: format 

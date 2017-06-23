@@ -1,0 +1,8 @@
+---
+#Install python on CoreOS even if there is no python yet
+  - name: "Installing python"
+    script: pythonize.sh install
+    become: yes
+    when: pythonize
+#  - debug: var=pythonize.stdout_lines
+

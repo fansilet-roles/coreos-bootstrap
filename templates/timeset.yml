@@ -1,0 +1,24 @@
+#cloud-config
+coreos:
+  units:
+    - name: ntpd.service
+      enable: true
+      command: start
+      content: |
+        [Unit]
+        Description=Network Time Service (isca - changes)
+        After=ntpdate.service sntp.service
+        Conflicts=systemd-timesyncd.service
+        [Service]
+        ExecStartPre=-/bin/sh -c "timedatectl set-timezone {{ item }}"
+        ExecStart=-/usr/sbin/ntpd -g -n -f /var/lib/ntp/ntp.drift -u ntp:ntp
+        PrivateTmp=true
+        Restart=always
+        [Install]
+        WantedBy=multi-user.target
+    - name: systemd-timesyncd.service
+      command: stop
+      mask: true
+    - name: ntpd.service
+      command: start
+      enable: true

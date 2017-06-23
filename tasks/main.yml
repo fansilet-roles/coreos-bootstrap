@@ -1,0 +1,12 @@
+---
+# tasks file for coreos-bootstrap
+
+#--- Install ---
+- include: python.yml
+- include: dkcompose.yml
+
+#--- Setup ---
+- include: profile.yml
+- include: timeset.yml
+#- include: setuping.yml
+#- include: dkdisk.yml

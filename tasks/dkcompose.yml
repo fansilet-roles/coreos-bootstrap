@@ -1,0 +1,19 @@
+---
+#Install docker-compose via
+  - name: "Installing | docker-compose via pip"
+    pip:
+      name: docker-compose
+      state: present
+    become: true
+    when: componize
+
+  - name: "Setup | adjusting docker-compose symlinks"
+    file:
+      src: "{{ dkcompose }}"
+      dest: "{{ pwdpypi }}docker-compose"
+      state: link
+    #command: ln -s "{{ dkcompose }}" "{{ pwdpypi }}"/docker-compose
+    become: yes
+    when: componize
+
+    

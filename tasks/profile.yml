@@ -1,0 +1,19 @@
+---
+#A little script to set aliases paths and profiles for all
+- name: "Setup | Setting profile.d "
+  file:
+    path: "{{ profiled }}"
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+  become: yes
+
+- name: "Setup | Seting profile customizations "
+  copy:
+    src: dotfile.sh
+    dest: "{{ profiled }}"
+    owner: root
+    group: root
+    mode: 0755
+  become: yes

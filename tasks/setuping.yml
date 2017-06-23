@@ -1,0 +1,18 @@
+---
+#Give me facts back
+  - name: "Setup | Load facts"
+    setup: filter=*
+
+#  - name: "Testing"
+#    debug:
+#      msg:  "{{ item.device }}"
+#   # command: echo "{{ item.value }}"
+#    with_items: "{{ ansible_mounts }}"    
+#    when: item.device != "xvda1"
+
+#  - name: "Testing"
+#    debug:
+#      msg: "{{ item.value.size}}"
+#    #command: echo {{ item.value }}
+#    with_dict: "{{ ansible_devices }}"
+#    when: item.value == "xvdc"
