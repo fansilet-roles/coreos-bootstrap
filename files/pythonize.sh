@@ -32,8 +32,8 @@ pkg="python-"$version".tgz"
 extract="$(curl -Lks http://downloads.activestate.com/ActivePython/releases/"$version"|grep tar.gz|awk -F'href=' '{print $2}'|awk -F'"' '{print $2}'|awk -F'.tar' '{print $1}')"
 optbin="/opt/bin"
 
-#Begin Testing
-##############
+#Begin Functions
+#################
 
 build(){
 	if [ ! -e "$path_py"/bin/python ]
@@ -48,6 +48,7 @@ build(){
     ln -s "$path_py"/bin/easy_install "$optbin"/easy_install
     ln -s "$path_py"/bin/pip "$optbin"/pip
     ln -s "$path_py"/bin/python "$optbin"/python
+    ln -s "$path_py"/bin/python /usr/bin/python
     ln -s "$path_py"/bin/virtualenv "$optbin"/virtualenv
 	else
 		echo -e "$whiteb"You already have a python installed..."$clean"
@@ -65,6 +66,7 @@ destroy(){
 			rm -rf "$path_py"; \
 			rm -rf "$path_src"; \
       rm -rf "$optbin"/easy_install "$optbin"/pip "$optbin"/python "$optbin"/virtualenv
+      rm -rf /usr/bin/python
 		)
 	else
 		echo -e "
@@ -90,7 +92,3 @@ install)
 ;;
 esac
 
-#ln -s /opt/python/bin/easy_install /opt/bin/easy_install
-#ln -s /opt/python/bin/pip /opt/bin/pip
-#ln -s /opt/python/bin/python /opt/bin/python
-#ln -s /opt/python/bin/virtualenv /opt/bin/virtualenv
