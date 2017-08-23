@@ -3,14 +3,14 @@ galaxy_info:
   description: "Very nice CoreOS BootStrap with python and docker-compose"
   company: "isca.space"
   license: "license (BSD, MIT)"
-  min_ansible_version: 1.2
+  min_ansible_version: 2.1
   platforms:
     - name: CoreOS
       versions:
       - all
   galaxy_tags: 
     - coreos
-    - kubectl
     - bootstrap
     - python
     - system
+    - docker-compose

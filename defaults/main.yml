@@ -1,9 +1,6 @@
 ---
 # defaults file for coreos-bootstrap
 
-targets: all
-user: core
-
 #--- Template Options
 universaltime: America/Sao_Paulo
 

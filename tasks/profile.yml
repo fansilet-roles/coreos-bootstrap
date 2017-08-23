@@ -1,5 +1,5 @@
 ---
-#A little script to set aliases paths and profiles for all
+#A little script to set aliases paths and profiles for users
 - name: "Setup | Setting profile.d "
   file:
     path: "{{ profiled }}"

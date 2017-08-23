@@ -1,10 +1,11 @@
 ---
-#Install docker-compose via
-  - name: "Installing | docker-compose via pip"
-    pip:
-      name: docker-compose
-      state: present
-    become: true
+#Install docker-compose via pip
+  - name: "Installing | docker-compose via github url"
+    get_url:
+      url: "{{ downcompose }}"
+      dest: "{{ dkcompose }}"
+      validate_certs: no
+      mode: 0755
     when: componize
 
   - name: "Setup | adjusting docker-compose symlinks"
@@ -13,7 +14,7 @@
       dest: "{{ pwdpypi }}docker-compose"
       state: link
     #command: ln -s "{{ dkcompose }}" "{{ pwdpypi }}"/docker-compose
-    become: yes
+    become: true
     when: componize
 
     
