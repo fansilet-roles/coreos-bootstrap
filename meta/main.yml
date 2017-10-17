@@ -13,4 +13,5 @@ galaxy_info:
     - bootstrap
     - python
     - system
-    - docker-compose
+    - docker
+    - "docker-compose"
