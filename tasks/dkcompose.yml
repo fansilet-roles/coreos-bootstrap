@@ -13,6 +13,7 @@
       src: "{{ dkcompose }}"
       dest: "{{ pwdpypi }}docker-compose"
       state: link
+      force: true
     #command: ln -s "{{ dkcompose }}" "{{ pwdpypi }}"/docker-compose
     become: true
     when: componize

@@ -24,12 +24,12 @@ whiteb="\033[37;1m"
 
 #Change-me as you need
 repo="http://downloads.activestate.com/ActivePython/releases/"
-version="$(curl -Lks "$repo"|grep -E 'img.*folder.gif.*DIR.*href'|head -1|awk -F'href=' '{print $2}'|awk -F'/' '{print $1}'|cut -c2-)"
-download="$(curl -Lks "$repo""$version"/|grep tar.gz|awk -F'href=' '{print $2}'|awk -F'"' '{print $2}')"
+version="$(curl -Lks "$repo"|grep -E 'img.*folder.gif.*DIR.*href'|tail -1|awk -F'href=' '{print $2}'|awk -F'/' '{print $1}'|cut -c2-)"
+download="$(curl -Lks "$repo""$version"/|grep tar.gz|tail -1|awk -F'href=' '{print $2}'|awk -F'"' '{print $2}')"
 path_src="/opt/src"
 path_py="/opt/python"
 pkg="python-"$version".tgz"
-extract="$(curl -Lks http://downloads.activestate.com/ActivePython/releases/"$version"|grep tar.gz|awk -F'href=' '{print $2}'|awk -F'"' '{print $2}'|awk -F'.tar' '{print $1}')"
+extract="$(curl -Lks "$repo""$version"/|grep tar.gz|awk -F'href=' '{print $2}'|awk -F'"' '{print $2}'|awk -F'.tar' '{print $1}'|tail -1)"
 optbin="/opt/bin"
 
 #Begin Functions
@@ -42,14 +42,16 @@ build(){
 		mkdir -p {"$path_py","$path_src"}
 		wget "$repo""$version"/"$download" -O "$path_src"/"$pkg"
 		(cd "$path_src";tar -xvzf "$pkg")
-		cd "$path_src"/"$extract"
-		./install.sh -I "$path_py"
+		(cd "$path_src"/"$extract";./install.sh -I "$path_py")
     mkdir -p "$optbin"
-    ln -s "$path_py"/bin/easy_install "$optbin"/easy_install
-    ln -s "$path_py"/bin/pip "$optbin"/pip
-    ln -s "$path_py"/bin/python "$optbin"/python
-    ln -s "$path_py"/bin/python /usr/bin/python
-    ln -s "$path_py"/bin/virtualenv "$optbin"/virtualenv
+    ln -sf "$path_py"/bin/easy_install "$optbin"/easy_install
+    ln -sf "$path_py"/bin/pip3 "$path_py"/bin/pip
+    ln -sf "$path_py"/bin/pip3 "$optbin"/pip3
+    ln -sf "$path_py"/bin/pip "$optbin"/pip
+    ln -sf "$path_py"/bin/python3 "$path_py"/bin/python
+    ln -sf "$path_py"/bin/python "$optbin"/python
+    ln -sf "$path_py"/bin/python /usr/bin/python
+    ln -sf "$path_py"/bin/virtualenv "$optbin"/virtualenv
 	else
 		echo -e "$whiteb"You already have a python installed..."$clean"
 	fi
